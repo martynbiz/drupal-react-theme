@@ -4,6 +4,15 @@ description: 'A theme that loads React JavaScript libraries, and a basic React a
 core: 8.x
 base theme: claro
 
+regions:
+  header: Header
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  highlighted: Highlighted
+  breadcrumb: Breadcrumb
+  content: Content
+  footer: Footer
+
 libraries:
   - react_theme/bootstrap
   - react_theme/react_app

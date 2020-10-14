@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PageComponent from "./PageComponent";
 
 import {
@@ -25,7 +25,7 @@ class Page extends PageComponent {
         {!isHomePath && 
           <Breadcrumb>
             <Breadcrumb.Item linkAs={Link} linkProps={{to: "/"}}>Home</Breadcrumb.Item>
-            <Breadcrumb.Item active>{data && data.title}</Breadcrumb.Item>
+            <Breadcrumb.Item active>About us</Breadcrumb.Item>
           </Breadcrumb>}
         {data && data.attributes.body && 
           <div dangerouslySetInnerHTML={{__html: data.attributes.body.value}} />}

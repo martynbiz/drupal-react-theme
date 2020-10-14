@@ -7,11 +7,11 @@ import {
   Link,
 } from 'react-router-dom';
 
-import './App.css';
+import config from 'react-global-configuration';
 
-import News from './Components/Views/News';
 import Article from './Components/Article';
-import Page from './Components/BasicPage';
+import BasicPage from './Components/BasicPage';
+import RecentArticles from './Components/Views/RecentArticles';
 
 import { 
   Navbar, 
@@ -22,85 +22,49 @@ import {
   Button
 } from 'react-bootstrap';
 
+config.set({
+  base_url: 'http://localhost:8085' 
+});
+
 class App extends Component {
 
   constructor() {
     super();
     this.state = { 
-      data: null,
+      data: null
     };
   }
   
-  render() {
-    
-    const {
-      data
-    } = this.state;
-    
+  render() {    
     return (
       <BrowserRouter>
         <div className="App">
-          <Navbar expand="lg" variant="dark">
-            <Navbar.Brand href="#home">
-              <img src="https://nmis.is.strath.ac.uk/media/nationalmanufacturinginstitutescotland/logos/nmis-main.png" alt="National Manufacturing Institute Scotland" />
-            </Navbar.Brand>
+          <Navbar className="navbar-light bg-light" expand="lg">
+            <Navbar.Brand href="#home">React Drupal Theme</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav defaultActiveKey="/home" as="ul" className="navbar-nav mr-auto">
+              <Nav className="mr-auto">
                 <Nav.Link as={Link} to="/">Home</Nav.Link>
-                <NavDropdown title="Abous us" id="dropdown02">
-                  <Nav.Link as={Link} to="/about-us">What is NMIS</Nav.Link>
+                <Nav.Link as={Link} to="/about-us">About</Nav.Link>
+                <NavDropdown title="What's happening" id="basic-nav-dropdown">
+                  <NavDropdown.Item as={Link} to="/news">Recent articles</NavDropdown.Item>
                 </NavDropdown>
-                <NavDropdown title="Our facilities" id="dropdown02">
-                  <Nav.Link as={Link} to="/msa">Manufacturing Skills Academy</Nav.Link>
-                </NavDropdown>
-                <NavDropdown title="What's happening" id="dropdown02">
-                  <Nav.Link as={Link} to="/news">News</Nav.Link>
-                </NavDropdown>
-                <Nav.Link as={Link} to="/get-in-touch">Get in touch</Nav.Link>
               </Nav>
-              <form className="form-inline my-2 my-lg-0" action="/search/" method="get" id="site-search">
-                <div className="position-relative">
-                  <input className="form-control mr-sm-2 site-search__input" type="text" placeholder="Search" aria-label="Search" name="query" id="site-search__input" autoComplete="off" />
-                  <div id="suggestions" className="suggestions" style={{display: 'block'}}>
-                    <ul id="suggestions__list" className="suggestions__list" />
-                  </div>
-                </div>
-                <button className="btn btn-light my-2 my-sm-0" type="submit">Search</button>
-              </form>
+              <Form inline>
+                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                <Button variant="outline-light dark">Search</Button>
+              </Form>
             </Navbar.Collapse>
           </Navbar>
           <Switch>
-            <Route exact path="/" component={Page}/>
-            <Route exact path="/news" component={News}/>
+            <Route exact path="/news" component={RecentArticles}/>
             <Route path="/news" render={(match) => <Article key={match.location.pathname} {...match}/>}/>
-            <Route render={(match) => <Page key={match.location.pathname} {...match}/>}/>
+            <Route render={(match) => <BasicPage key={match.location.pathname} {...match}/>}/>
           </Switch>
         </div>
       </BrowserRouter>
     );
   }
-
-  // loadNews() {
-  //   // Fetch News.
-  //   fetch(LIST_URL, {mode:'cors'})
-  //     .then(function (response) {
-  //       return response.json();
-  //     })
-  //     .then((data) => this.updateData(data))
-  //     .catch(err => console.log('Fetching News Failed', err));
-  // }
-
-  // updateData(responseData) {
-  //   this.setState({
-  //     data: responseData.data,
-  //     included: responseData.included
-  //   });
-  // }
-
-  // componentWillMount() {
-  //   this.loadNews();
-  // }
 }
 
 export default App;

@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PageComponent from "./PageComponent";
 
 import { 
   Container,
@@ -14,7 +15,7 @@ import {
   Link,
 } from 'react-router-dom';
 
-class Article extends Component {
+class Article extends PageComponent {
 
   constructor() {
     super();
@@ -50,40 +51,6 @@ class Article extends Component {
           </Container>}
       </div>
     );
-  }
-
-  translatePath() {
-    const { location } = this.props;
-    fetch('http://localhost:8083/router/translate-path?path=' + location.pathname, {mode:'cors'})
-      .then(function (response) {
-        return response.json();
-      })
-      .then((data) => this.loadContent(data))
-      .catch(err => this.setState({
-        data: null,
-        currentPath: location.pathname,
-      }));
-  }
-
-  loadContent(data) {
-    const { location } = this.props;
-    fetch(data.jsonapi.individual, {mode:'cors'})
-      .then(function (response) {
-        return response.json();
-      })
-      .then((data) => this.updateContent(data))
-      .catch(err => this.setState({
-        data: null,
-        currentPath: location.pathname,
-      }));
-  }
-
-  updateContent(responseData) {
-    const { location } = this.props;
-    this.setState({
-      data: responseData.data,
-      currentPath: location.pathname,
-    });
   }
 }
 

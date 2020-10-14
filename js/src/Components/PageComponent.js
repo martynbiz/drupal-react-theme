@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import config from 'react-global-configuration';
+
 class PageComponent extends Component {
 
   constructor() {
@@ -19,7 +21,8 @@ class PageComponent extends Component {
 
   translatePath() {
     const { location } = this.props;
-    fetch('http://localhost:8083/router/translate-path?path=' + location.pathname, {mode:'cors'})
+    const url = config.get('base_url') + '/router/translate-path?path=' + location.pathname;
+    fetch(url, {mode:'cors'})
       .then(function (response) {
         return response.json();
       })
