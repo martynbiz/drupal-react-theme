@@ -37,7 +37,7 @@ class Article extends PageComponent {
         {!isHomePath && 
           <Breadcrumb>
             <Breadcrumb.Item linkAs={Link} linkProps={{to: "/"}}>Home</Breadcrumb.Item>
-            <Breadcrumb.Item linkAs={Link} linkProps={{to: "/news"}}>News</Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={Link} linkProps={{to: "/news"}}>Articles</Breadcrumb.Item>
             <Breadcrumb.Item active>{data && data.attributes.title}</Breadcrumb.Item>
           </Breadcrumb>}
         {data && data.attributes.body && 

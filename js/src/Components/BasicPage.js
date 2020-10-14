@@ -19,10 +19,12 @@ class Page extends PageComponent {
     if (location.pathname !== currentPath) {
       this.translatePath(location);
     }
+
+    const showBreadcrumb = !isHomePath;
     
     return (
       <div>
-        {!isHomePath && 
+        {showBreadcrumb && 
           <Breadcrumb>
             <Breadcrumb.Item linkAs={Link} linkProps={{to: "/"}}>Home</Breadcrumb.Item>
             <Breadcrumb.Item active>About us</Breadcrumb.Item>

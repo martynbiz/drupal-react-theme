@@ -42,20 +42,17 @@ class RecentArticles extends Component {
             <Breadcrumb.Item linkAs={Link} linkProps={{to: "/"}}>Home</Breadcrumb.Item>
             <Breadcrumb.Item active>Articles</Breadcrumb.Item>
           </Breadcrumb>}
-        <Container fluid className="bg-light py-5">
-          <Container>
-            <Row>
-              <Col> 
-                <h1>Articles</h1>
-                <CardDeck>
-                  {data !== null && data !== undefined && data.length > 0 ?
-                    data.slice(0, 3).map(item => <Article {...item} key={item.id} included={included}/>)
-                    :
-                    <div>No Articles found.</div>}
-                </CardDeck>
-              </Col>
-            </Row>
-          </Container>
+        <Container>
+          <Row>
+            <Col> 
+              <CardDeck>
+                {data !== null && data !== undefined && data.length > 0 ?
+                  data.slice(0, 3).map(item => <Article {...item} key={item.id} included={included}/>)
+                  :
+                  <div>No Articles found.</div>}
+              </CardDeck>
+            </Col>
+          </Row>
         </Container>
       </div>
     );

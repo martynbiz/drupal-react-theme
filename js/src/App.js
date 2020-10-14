@@ -40,7 +40,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar className="navbar-light bg-light" expand="lg">
-            <Navbar.Brand href="#home">React Drupal Theme</Navbar.Brand>
+            <Navbar.Brand href="#home">SCAT</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
