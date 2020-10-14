@@ -5,4 +5,5 @@ core: 8.x
 base theme: claro
 
 libraries:
+  - react_theme/bootstrap
   - react_theme/react_app
